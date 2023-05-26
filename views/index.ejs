@@ -2,10 +2,63 @@
 <html>
   <head>
     <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
   </head>
   <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
+    <header>
+      <h1>Mini Message Board</h1>
+    </header>
+    <main>
+      <section class="messages">
+        <% for(const message of messages) {%>
+        <div class="message">
+          <img
+            class="avatar"
+            src="https://robohash.org/N2M.png?set=set1&size=70x70"
+            alt="<%= `${message.user}'s avatar` %>"
+          />
+          <div>
+            <div class="message-header">
+              <h4>@<%= message.user %></h4>
+              <span class="message-date"
+                ><%= new Intl.DateTimeFormat("en-PK", {dateStyle:"short",
+                timeStyle:"short"}).format(message.added) %></span
+              >
+            </div>
+            <div class="message-body">
+              <p><%= message.text %></p>
+            </div>
+          </div>
+        </div>
+        <%}%>
+      </section>
+      <form action="/new" method="POST" class="message-form">
+        <div class="form-inputs">
+          <input type="text" placeholder="Username" aria-label="username" />
+          <input type="text" placeholder="Message" aria-label="message" />
+        </div>
+        <button
+          class="send-message-btn"
+          type="submit"
+          aria-label="Send Message"
+        >
+          <svg
+            viewBox="0 0 24 24"
+            width="24"
+            height="24"
+            stroke="#eee"
+            stroke-width="2"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="css-i6dzq1"
+          >
+            <line x1="22" y1="2" x2="11" y2="13"></line>
+            <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+          </svg>
+        </button>
+      </form>
+    </main>
   </body>
 </html>
