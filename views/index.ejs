@@ -7,6 +7,7 @@
   </head>
   <body>
     <header>
+      <img src="/images/message-square.svg" />
       <h1>Mini Message Board</h1>
     </header>
     <main>
@@ -35,8 +36,20 @@
       </section>
       <form action="/new" method="POST" class="message-form">
         <div class="form-inputs">
-          <input type="text" placeholder="Username" aria-label="username" />
-          <input type="text" placeholder="Message" aria-label="message" />
+          <input
+            type="text"
+            name="user"
+            placeholder="Username"
+            aria-label="username"
+            autocomplete="off"
+          />
+          <input
+            type="text"
+            name="text"
+            placeholder="Message"
+            aria-label="message"
+            autocomplete="off"
+          />
         </div>
         <button
           class="send-message-btn"
